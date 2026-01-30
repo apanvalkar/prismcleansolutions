@@ -3,12 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Prism Clean Solutions | Residential • Commercial • Coworking | Melbourne</title>
-  <meta name="description" content="Professionally managed eco-friendly cleaning in Melbourne: residential, commercial and coworking. Steam cleans, regular cleans, deep cleans, vacate and Airbnb turnovers."/>
-  <meta property="og:title" content="Prism Clean Solutions | Corporate-grade clean • Melbourne"/>
-  <meta property="og:description" content="Residential • Commercial • Coworking cleaning with eco-friendly materials, trained staff, EAP support and public liability insurance. Spotless every time."/>
-  <meta property="og:type" content="website"/>
-
+  <title>Prism Clean Solutions | Melbourne</title>
+  <meta name="description" content="Professionally managed eco-friendly cleaning in Melbourne: residential, commercial and coworking."/>
   <style>
     :root{
       --ink:#0B2B45;
@@ -17,10 +13,9 @@
       --bg:#FFFFFF;
       --panel:#F6FAFD;
       --line:#E2ECF3;
-      --accent:#0EA5E9;  /* blue */
-      --accent2:#14B8A6; /* teal */
+      --accent:#0EA5E9;
+      --accent2:#14B8A6;
       --shadow:0 16px 50px rgba(11,43,69,.10);
-      --radius:18px;
       --radius2:24px;
     }
     *{box-sizing:border-box}
@@ -79,94 +74,79 @@
       box-shadow:var(--shadow);padding:20px;
     }
     .panel{background:linear-gradient(180deg,rgba(246,250,253,.98),rgba(246,250,253,.72));}
-    .trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .tag{
-      padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;
-      color:var(--ink2);font-weight:900;font-size:13px;
-    }
     .section{padding:30px 0}
     .section h2{margin:0 0 10px;font-size:28px;letter-spacing:-0.2px}
     .section p{margin:0 0 14px;color:var(--muted)}
-    .cols-3{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:980px){.cols-3{grid-template-columns:1fr}}
-    .service h3{margin:0 0 6px;font-size:16px}
-    .service p{margin:0;color:var(--muted);font-size:14px}
 
-    table{
-      width:100%;
-      border-collapse:separate;border-spacing:0;
-      overflow:hidden;border-radius:18px;border:1px solid var(--line);
+    .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:980px){.pkg-grid{grid-template-columns:1fr}}
+    .pkg{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:22px;
       background:#fff;
-      box-shadow:0 12px 36px rgba(11,43,69,.06);
+      box-shadow:0 12px 34px rgba(11,43,69,.08);
+      padding:18px;
+      cursor:pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+      overflow:hidden;
+      min-height: 168px;
     }
-    th,td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-    th{background:var(--panel);text-align:left;color:var(--ink2);font-weight:900}
-    tr:last-child td{border-bottom:0}
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
+    .pkg:hover{transform: translateY(-3px); box-shadow:0 18px 44px rgba(11,43,69,.12)}
+    .pkg h3{margin:0 0 6px;font-size:16px;color:var(--ink2)}
+    .from{font-weight:950;margin-top:8px}
+    .muted{color:var(--muted);font-size:13px;margin:0}
+    .topline{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .chip{
+      display:inline-flex;gap:8px;align-items:center;
       padding:8px 10px;border-radius:999px;
-      background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.18);
-      color:var(--ink2);font-weight:900;font-size:12px;
+      border:1px solid rgba(14,165,233,.20);
+      background:rgba(14,165,233,.08);
+      color:var(--ink2);
+      font-weight:900;font-size:12px;
+      white-space:nowrap;
     }
-    .badge .miniDot{width:7px;height:7px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media(max-width:980px){.split{grid-template-columns:1fr}}
-    .checklist details{
-      border:1px solid var(--line);border-radius:18px;padding:12px 14px;
-      background:#fff;box-shadow:0 12px 30px rgba(11,43,69,.06);
-      margin-bottom:10px;
+    .chip .miniDot{width:7px;height:7px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+
+    .detail{
+      position:absolute;
+      left:14px; right:14px; bottom:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(246,250,253,.98), rgba(255,255,255,.96));
+      box-shadow:0 18px 46px rgba(11,43,69,.12);
+      padding:14px 14px 12px;
+      transform: translateY(18px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .55s ease, transform .55s ease;
     }
-    .checklist summary{cursor:pointer;font-weight:950;color:var(--ink2)}
-    ul{margin:10px 0 0 18px;color:var(--muted)}
-    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    .mini{
-      border:1px solid var(--line);border-radius:18px;padding:12px;background:#fff;
+    .pkg:hover .detail, .pkg:focus-within .detail{opacity:1;transform: translateY(0);pointer-events:auto}
+    .detail .title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+    .detail .title strong{color:var(--ink2)}
+    .detail ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px}
+    .detail li{margin:4px 0}
+    .detail .cta{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .mini-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;border-radius:999px;border:1px solid var(--line);
+      background:#fff;font-weight:900;text-decoration:none;font-size:13px;
     }
-    .mini strong{display:block;color:var(--ink2);font-size:16px}
-    .mini span{color:var(--muted);font-size:13px}
-    .input{
-      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);
-      background:#fff;color:var(--ink);font-weight:650;
-    }
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media(max-width:760px){.row{grid-template-columns:1fr}}
-    .note{font-size:12px;color:var(--muted)}
+    .mini-btn.primary{border:0;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+
     .footer{
       margin-top:22px;padding:22px 0 46px;border-top:1px solid var(--line);
       color:var(--muted);
       background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(246,250,253,.72));
     }
-    .sticky-cta{
-      position:fixed;right:18px;bottom:18px;z-index:999;
-      padding:14px 16px;border-radius:999px;font-weight:950;color:#fff;text-decoration:none;
-      box-shadow:0 18px 44px rgba(11,43,69,.18);
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-    }
-    .sticky-contact{
-      position:fixed;left:18px;bottom:18px;z-index:999;display:flex;gap:10px;flex-wrap:wrap;
-    }
-    .chip{
-      padding:12px 14px;border-radius:999px;border:1px solid var(--line);
-      background:#fff;color:var(--ink2);font-weight:950;text-decoration:none;
-      box-shadow:0 14px 34px rgba(11,43,69,.12);
-    }
-    .chip:hover,.sticky-cta:hover{transform:translateY(-1px)}
-    .fineprint{margin-top:10px;color:var(--muted);font-size:13px}
   </style>
 </head>
-
 <body>
   <div class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="Prism Clean Solutions home">
-        <img src="assets/logo.svg" alt="Prism Clean Solutions logo"/>
-      </a>
+      <a class="brand" href="#top" aria-label="Prism Clean Solutions home"><img src="assets/logo.svg" alt="Prism Clean Solutions"/></a>
       <div class="links">
-        <a href="#services">Services</a>
         <a href="#packages">Packages</a>
-        <a href="#airbnb">Airbnb</a>
-        <a href="#checklist">Checklist</a>
-        <a href="#about">About</a>
         <a class="btn" href="#contact">Contact</a>
       </div>
     </div>
@@ -175,390 +155,134 @@
   <header id="top" class="wrap hero">
     <div class="grid hero-grid">
       <div>
-        <div class="pill"><span class="dot"></span> Corporate clean • Blue/teal finish • Melbourne</div>
-        <h1>Spotless, every time — with standards you can trust.</h1>
-        <p class="sub">
-          Prism Clean Solutions is a <strong>professionally managed cleaning company</strong> specialising in
-          <strong>residential</strong>, <strong>commercial</strong>, and <strong>high-use coworking spaces</strong>.
-          We use <strong>nature-friendly materials</strong>, <strong>trained staff</strong>, and consistent quality checks to
-          leave your property pristine and guest-ready.
-        </p>
-
+        <div class="pill"><span class="dot"></span> Premium cleaning • Melbourne</div>
+        <h1>Packages that reveal details on hover.</h1>
+        <p class="sub">Hover over a package tile to open a detailed card with a slow, premium transition. On mobile, tap the tile.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a class="btn primary" href="#contact">Get a Quote</a>
-          <a class="btn" href="#packages">View Pricing</a>
+          <a class="btn primary" href="#packages">See packages</a>
+          <a class="btn" href="#contact">Get a quote</a>
         </div>
-
-        <div class="trust">
-          <span class="tag">Eco-friendly products</span>
-          <span class="tag">Trained team + EAP support</span>
-          <span class="tag">Public liability insured</span>
-          <span class="tag">Steam cleaning available</span>
-        </div>
-
-        <p class="fineprint">
-          People-first workplace: we look after staff mental & physical wellbeing via an Employee Assistance Program (EAP),
-          safe work practices, and ongoing training.
-        </p>
       </div>
-
       <div class="card panel">
-        <div class="badge"><span class="miniDot"></span> Airbnb Turnover Service</div>
-        <h3 style="margin:10px 0 8px;">Cleaning + restock + presentation setup</h3>
-        <p style="margin:0 0 12px;color:var(--muted);">
-          Designed to impress guests and pass inspections with a consistent checklist-driven finish.
-          Optional linen service and express turnovers available.
-        </p>
-
-        <div class="kpi">
-          <div class="mini">
-            <strong>From $120</strong>
-            <span>AUD incl. GST</span>
-          </div>
-          <div class="mini">
-            <strong>Turnover-ready</strong>
-            <span>Restock + finishing touches</span>
-          </div>
-        </div>
-
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-          <a class="btn primary" href="#contact">Book / Enquire</a>
-          <a class="btn" href="#checklist">See checklist</a>
-        </div>
-        <p class="note" style="margin-top:12px;">
-          Custom packages available for multiple properties and ongoing management.
-        </p>
+        <strong>Formspree ready</strong>
+        <p class="muted" style="margin-top:6px;">Replace <strong>FORM_ID_HERE</strong> in the form action.</p>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <h2>Services</h2>
-      <p>Residential, commercial, and coworking cleaning — delivered with corporate-grade consistency and a fresh, low-odour finish.</p>
-
-      <div class="grid cols-3">
-        <div class="card service">
-          <h3>Regular Residential Cleaning</h3>
-          <p>Weekly/fortnightly maintenance cleans to keep your home consistently neat, fresh, and guest-ready.</p>
-        </div>
-        <div class="card service">
-          <h3>Commercial & Office Cleaning</h3>
-          <p>Reliable schedules, discreet service, and high-touchpoint hygiene for shared workspaces.</p>
-        </div>
-        <div class="card service">
-          <h3>Coworking Specialist Cleaning</h3>
-          <p>Hot desks, phone booths, meeting rooms, kitchens, and high-traffic zones cleaned to shared-space standards.</p>
-        </div>
-        <div class="card service">
-          <h3>Professional Steam Cleaning</h3>
-          <p>Carpet, rug, and upholstery steam cleans available as add-ons or stand-alone services.</p>
-        </div>
-        <div class="card service">
-          <h3>Deep Clean</h3>
-          <p>Detail-focused reset clean targeting build-up zones, edges, seals, and presentation-level finishing.</p>
-        </div>
-        <div class="card service">
-          <h3>Vacate / End-of-Lease</h3>
-          <p>Inspection-ready cleaning aligned with property manager expectations and handover standards.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PACKAGES / PRICING -->
     <section id="packages" class="section">
-      <h2>Pricing & Packages</h2>
-      <p>Clear, upfront packages — with custom options to match your property, schedule, and standards.</p>
+      <h2>Residential Packages</h2>
+      <p>Mouse over any package to see the full inclusions. The details open slowly like a premium card.</p>
 
-      <table aria-label="Pricing table">
-        <thead>
-          <tr>
-            <th>Package</th>
-            <th>Best for</th>
-            <th>Includes</th>
-            <th>From</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Package 1 — General Residential Clean</strong><br><span class="note">Guide: ~2 hours for a 4 bed / 2 bath</span></td>
-            <td>Ongoing maintenance</td>
-            <td>Surfaces + floors, kitchen & bathrooms, bins, alignment finish (neat presentation)</td>
-            <td><strong>Quote</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Airbnb Turnover</strong></td>
-            <td>Short-stay hosts</td>
-            <td>Full clean, restock, and presentation setup (guest-ready every time)</td>
-            <td><strong>from $120</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Deep Clean</strong></td>
-            <td>Reset / seasonal</td>
-            <td>Extra detail in build-up zones, edges, seals, and extended time allocation</td>
-            <td><strong>Quote</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Vacate / End-of-Lease</strong></td>
-            <td>Moving out</td>
-            <td>Inspection-ready clean + optional steam clean for carpets/upholstery</td>
-            <td><strong>Quote</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Commercial / Coworking</strong></td>
-            <td>Workspaces</td>
-            <td>Routine schedules, shared-space hygiene, and high-touchpoint protocols</td>
-            <td><strong>Quote</strong></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="note" style="margin-top:10px;">
-        All prices are in AUD and include GST. Additional services or special requests can be quoted separately.
-      </p>
-    </section>
-
-    <!-- AIRBNB / FLYER COPY -->
-    <section id="airbnb" class="section">
-      <div class="split">
-        <div class="card panel">
-          <h2 style="margin-top:0;">Airbnb Turnover Service</h2>
-          <p>
-            <strong>Every cleaning is an opportunity to impress.</strong> Our turnover service delivers a consistent, guest-ready finish
-            with restock and presentation — designed for short-stay properties, premium homes, and luxury residences.
-          </p>
-          <ul>
-            <li><strong>Eco products only</strong></li>
-            <li><strong>Detail-oriented team</strong></li>
-            <li><strong>Reliable, on-time service</strong></li>
-            <li>Optional linen service + express turnovers</li>
-          </ul>
-
-          <div class="card" style="margin-top:14px;box-shadow:none;border-radius:18px;">
-            <strong>Flyer / Card Copy (Front)</strong>
-            <p class="fineprint" style="margin:8px 0 0;">
-              <strong>Prism Clean Solutions</strong><br/>
-              Every Detail Aligned to Perfection — Cleaning Elevated.<br/>
-              Eco-friendly, high-end cleaning & organising for Airbnbs, homes, and luxury residences.
-            </p>
+      <div class="pkg-grid">
+        <div class="pkg" tabindex="0">
+          <div class="topline">
+            <div>
+              <h3>General Residential Clean</h3>
+              <p class="muted">Guide: ~2 hours for a 4 bed / 2 bath</p>
+            </div>
+            <div class="chip"><span class="miniDot"></span> Maintenance</div>
+          </div>
+          <div class="from">From: Quote</div>
+          <div class="detail">
+            <div class="title"><strong>Included</strong><span class="muted">Eco products</span></div>
+            <ul>
+              <li>Dust & wipe accessible surfaces</li>
+              <li>Vacuum & mop floors</li>
+              <li>Kitchen surfaces + appliance exteriors</li>
+              <li>Bathrooms cleaned & sanitised</li>
+              <li>Bins emptied + tidy finish</li>
+            </ul>
+            <div class="cta">
+              <a class="mini-btn primary" href="#contact">Request quote</a>
+              <a class="mini-btn" href="#contact">Book</a>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <h3 style="margin-top:0;">Calling card (optional)</h3>
-          <p style="color:var(--muted);">
-            Optional calling card left on the kitchen counter after each clean for a professional, consistent handover signal.
-          </p>
-
-          <div class="card panel" style="box-shadow:none;">
-            <strong>Flyer / Card Copy (Back)</strong>
-            <p class="fineprint" style="margin:8px 0 0;">
-              <strong>Airbnb Turnover Service from $120</strong><br/>
-              Includes full clean, restock, and presentation setup.<br/>
-              Optional linen service + express turnovers available.<br/><br/>
-              ✳ Eco products only<br/>
-              ✳ Detail-oriented team<br/>
-              ✳ Reliable, on-time service
-            </p>
+        <div class="pkg" tabindex="0">
+          <div class="topline">
+            <div>
+              <h3>Deep Clean</h3>
+              <p class="muted">Reset clean • build-up zones • detail finish</p>
+            </div>
+            <div class="chip"><span class="miniDot"></span> Premium</div>
           </div>
-
-          <p class="note" style="margin-top:12px;">
-            Add your phone/email/social handles below in the Contact section.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CHECKLIST -->
-    <section id="checklist" class="section checklist">
-      <h2>Turnover Checklist</h2>
-      <p>Standard checklist used for short-stay turnovers (customisable per property).</p>
-
-      <details open>
-        <summary>General Cleaning</summary>
-        <ul>
-          <li>Dust and wipe all surfaces, ledges, and furniture</li>
-          <li>Vacuum and mop all floors (use eco-friendly products)</li>
-          <li>Empty all bins and replace liners</li>
-          <li>Clean mirrors, windows, and glass doors (streak-free finish)</li>
-          <li>Check and adjust decor for neat alignment</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Bedrooms</summary>
-        <ul>
-          <li>Strip and replace all bedding (freshly laundered)</li>
-          <li>Fluff pillows and smooth duvet covers</li>
-          <li>Wipe bedside tables and lamps</li>
-          <li>Ensure wardrobes and drawers are tidy</li>
-          <li>Check under beds for items left behind</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Living Area</summary>
-        <ul>
-          <li>Dust and polish all surfaces</li>
-          <li>Vacuum couches and cushions</li>
-          <li>Fold throws neatly</li>
-          <li>Wipe TV screens and remotes</li>
-          <li>Straighten furniture and decor</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Kitchen</summary>
-        <ul>
-          <li>Wash and put away dishes</li>
-          <li>Wipe benchtops, stove, oven, and microwave</li>
-          <li>Empty and clean bins</li>
-          <li>Refill essentials (coffee, tea, sugar, salt, etc.)</li>
-          <li>Check fridge for leftovers, wipe shelves</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Bathroom</summary>
-        <ul>
-          <li>Scrub shower, bath, sink, and toilet</li>
-          <li>Polish mirrors and chrome fixtures</li>
-          <li>Replace towels and bath mats</li>
-          <li>Restock toiletries (soap, shampoo, toilet paper)</li>
-          <li>Ensure pleasant, clean scent</li>
-        </ul>
-      </details>
-
-      <details>
-        <summary>Finishing Touches</summary>
-        <ul>
-          <li>Air out the property (open windows briefly)</li>
-          <li>Place eco-scent diffuser or air freshener</li>
-          <li>Set room temperature (if applicable)</li>
-          <li>Check all lights and appliances are off/on as required</li>
-          <li>Leave calling card on kitchen counter (optional)</li>
-        </ul>
-      </details>
-    </section>
-
-    <!-- ABOUT / TRUST -->
-    <section id="about" class="section">
-      <div class="split">
-        <div class="card">
-          <h2 style="margin-top:0;">Professionally managed, people-first</h2>
-          <p>
-            We run a structured, professionally managed operation — with training, checklists, and quality checks — so you get a consistent result every time.
-            We also look after our team’s mental and physical wellbeing through an Employee Assistance Program (EAP) and safe work practices.
-          </p>
-          <ul>
-            <li>Nature-friendly, low-toxicity materials</li>
-            <li>Trained staff and consistent checklists</li>
-            <li>Public liability insurance</li>
-            <li>Professional steam cleaning available</li>
-          </ul>
+          <div class="from">From: Quote</div>
+          <div class="detail">
+            <div class="title"><strong>Included</strong><span class="muted">Extended time</span></div>
+            <ul>
+              <li>Edges, skirting, corners & detail zones</li>
+              <li>Bathroom build-up attention</li>
+              <li>Kitchen detail: splashback + fronts</li>
+              <li>High-touchpoints sanitised</li>
+              <li>Presentation-level finish</li>
+            </ul>
+            <div class="cta">
+              <a class="mini-btn primary" href="#contact">Request quote</a>
+              <a class="mini-btn" href="#contact">Book</a>
+            </div>
+          </div>
         </div>
 
-        <div class="card panel">
-          <h3 style="margin-top:0;">Custom packages</h3>
-          <p style="color:var(--muted);">
-            Need something tailored? We offer custom cleaning packages based on your space and priorities — including restock management for short-stays,
-            high-touchpoint hygiene for coworking, and regular schedules for homes and offices.
-          </p>
-          <div class="card" style="box-shadow:none;border-radius:18px;">
-            <strong>Our promise</strong>
-            <p class="fineprint" style="margin:8px 0 0;">
-              Leaving your property spotless every time — with a neat, aligned presentation finish.
-            </p>
+        <div class="pkg" tabindex="0">
+          <div class="topline">
+            <div>
+              <h3>Vacate / End-of-Lease</h3>
+              <p class="muted">Inspection-ready handover standard</p>
+            </div>
+            <div class="chip"><span class="miniDot"></span> Handover</div>
+          </div>
+          <div class="from">From: Quote</div>
+          <div class="detail">
+            <div class="title"><strong>Included</strong><span class="muted">Optional steam</span></div>
+            <ul>
+              <li>Detailed kitchen + bathrooms</li>
+              <li>Tracks, frames, skirting</li>
+              <li>Full floors: vacuum + mop</li>
+              <li>Inspection-focused presentation</li>
+              <li>Steam clean available</li>
+            </ul>
+            <div class="cta">
+              <a class="mini-btn primary" href="#contact">Request quote</a>
+              <a class="mini-btn" href="#contact">Book</a>
+            </div>
           </div>
         </div>
       </div>
+
+      <p class="note" style="margin-top:12px;">On mobile: tap a tile to focus it; tap outside to close.</p>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="section">
-      <h2>Contact Us</h2>
-      <p>For inquiries or to schedule a cleaning service, get in touch using the details below.</p>
-
-      <div class="split">
-        <div class="card">
-          <p style="margin:0 0 6px;"><strong>Email:</strong> <a href="mailto:hello@alignsystems.com">hello@alignsystems.com</a></p>
-          <p style="margin:0 0 6px;"><strong>Phone:</strong> <a href="tel:+61400000000">0400 000 000</a></p>
-          <p style="margin:0;"><strong>Social:</strong> @alignsystems (Facebook & Instagram)</p>
-          <p class="note" style="margin-top:12px;">Update these contact details to your final business number and social handles.</p>
-        </div>
-
-        <div class="card panel">
-          <form action="https://formspree.io/f/FORM_ID_HERE" method="POST">
-            <div class="row">
-              <input class="input" name="name" placeholder="Your name" required>
-              <input class="input" name="phone" placeholder="Phone (optional)">
-            </div>
-
-            <div style="height:10px"></div>
-            <input class="input" type="email" name="email" placeholder="Email" required>
-
-            <div style="height:10px"></div>
-            <select class="input" name="service" required>
-              <option value="" selected disabled>Service type</option>
-              <option>General Residential Cleaning</option>
-              <option>Deep Clean</option>
-              <option>Vacate / End-of-Lease</option>
-              <option>Airbnb Turnover</option>
-              <option>Commercial / Office Cleaning</option>
-              <option>Coworking Space Cleaning</option>
-              <option>Steam Cleaning</option>
-              <option>Custom Package</option>
-            </select>
-
-            <div style="height:10px"></div>
-            <div class="row">
-              <input class="input" name="suburb" placeholder="Suburb (e.g., Southbank)">
-              <select class="input" name="frequency">
-                <option value="" selected disabled>Frequency (optional)</option>
-                <option>One-off</option>
-                <option>Weekly</option>
-                <option>Fortnightly</option>
-                <option>Monthly</option>
-              </select>
-            </div>
-
-            <div style="height:10px"></div>
-            <textarea class="input" name="message" rows="5" placeholder="Tell us about the property (beds/baths or sqm), preferred day/time, and any focus areas."></textarea>
-
-            <input type="hidden" name="_subject" value="New enquiry — Prism Clean Solutions">
-            <input type="hidden" name="_next" value="https://apanvalkar.github.io/prismcleansolutions/thanks.html">
-            <input type="text" name="_gotcha" style="display:none">
-
-            <div style="height:12px"></div>
-            <button class="btn primary" type="submit">Send enquiry</button>
-
-            <p class="note" style="margin-top:10px;">
-              Replace <strong>FORM_ID_HERE</strong> with your Formspree endpoint ID.
-            </p>
-          </form>
-        </div>
+      <h2>Contact</h2>
+      <div class="card panel">
+        <form action="https://formspree.io/f/FORM_ID_HERE" method="POST">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <input class="btn" style="box-shadow:none;font-weight:800;border-radius:14px" name="name" placeholder="Your name" required>
+            <input class="btn" style="box-shadow:none;font-weight:800;border-radius:14px" name="phone" placeholder="Phone (optional)">
+          </div>
+          <div style="height:10px"></div>
+          <input class="btn" style="box-shadow:none;font-weight:800;border-radius:14px;width:100%" type="email" name="email" placeholder="Email" required>
+          <div style="height:10px"></div>
+          <textarea class="btn" style="box-shadow:none;font-weight:800;border-radius:14px;width:100%" name="message" rows="5" placeholder="Tell us what you need"></textarea>
+          <input type="hidden" name="_subject" value="New enquiry — Prism Clean Solutions">
+          <input type="hidden" name="_next" value="https://apanvalkar.github.io/prismcleansolutions/thanks.html">
+          <input type="text" name="_gotcha" style="display:none">
+          <div style="height:12px"></div>
+          <button class="btn primary" type="submit">Send enquiry</button>
+        </form>
       </div>
-
-      <p class="fineprint">
-        Every cleaning is an opportunity to impress. Prism Clean Solutions aligns every detail to perfection — ensuring your space is spotless, organised, and truly elevated.
-      </p>
     </section>
 
     <section class="footer">
       <div class="wrap" style="padding:0;">
-        <strong style="color:var(--ink)">Prism Clean Solutions</strong> — Corporate-grade clean • Melbourne<br/>
+        <strong style="color:var(--ink)">Prism Clean Solutions</strong><br/>
         <span>© <span id="y"></span> Prism Clean Solutions. All rights reserved.</span>
       </div>
     </section>
   </main>
-
-  <!-- Optional quick contact buttons (update number) -->
-  <div class="sticky-contact">
-    <a class="chip" href="sms:+61400000000?&body=Hi%20Prism%20Clean%20Solutions%2C%20I%27d%20like%20a%20quote%20for%20a%20clean." aria-label="Send SMS">SMS</a>
-    <a class="chip" href="https://wa.me/61400000000?text=Hi%20Prism%20Clean%20Solutions%2C%20I%27d%20like%20a%20quote%20for%20a%20clean." aria-label="WhatsApp message">WhatsApp</a>
-  </div>
-  <a class="sticky-cta" href="#contact" aria-label="Book a Clean">Book a Clean</a>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
